@@ -197,7 +197,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
         }
 
         .about-text p {
@@ -208,26 +208,29 @@
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .skill-tag {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-main);
         }
 
         .profile-card {
             background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
             border: var(--border);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profile-card::before {
@@ -242,14 +245,14 @@
 
         /* --- Profile Image Styles --- */
         .profile-img-container {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 1.5rem auto;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 1.5rem;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--primary-accent);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-            position: relative;
+            border: 4px solid rgba(0, 210, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: #1a1f2e;
         }
 
         .profile-img {
@@ -554,11 +557,12 @@
             </div>
             
             <div class="profile-card">
+                <!-- User Profile Image -->
                 <div class="profile-img-container">
-                    <img src="https://placehold.co/400x400/1a1f2e/00d2ff?text=Photo" alt="Oluwaseun Garuba" class="profile-img">
+                    <img src="https://github.com/seungaruba/graph-ai-portfolio-new/blob/main/IMG-20251213-WA0016.jpg?raw=true" alt="Oluwaseun Garuba" class="profile-img">
                 </div>
 
-                <h3 style="text-align: center; margin-bottom: 1.5rem;">Core Competencies</h3>
+                <h3 style="text-align: center; margin-bottom: 1rem; font-size: 1.2rem; color: var(--primary-accent);">Core Competencies</h3>
                 <div class="skills-container" style="justify-content: center;">
                     <span class="skill-tag">Quality Improvement</span>
                     <span class="skill-tag">Data Analysis (R & Excel)</span>
@@ -569,11 +573,11 @@
                     <span class="skill-tag">Team Leadership</span>
                     <span class="skill-tag">Process Automation</span>
                 </div>
-                <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; text-align: center;">
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">
-                        <strong>Education:</strong><br>
-                        M.Sc. Information Management Technology (FUTO)<br>
-                        B.Sc. Computer Science (Madonna University)
+                
+                <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; text-align: center;">
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                        <strong>M.Sc. Info Management Tech</strong> (FUTO)<br>
+                        <strong>B.Sc. Computer Science</strong> (Madonna University)
                     </p>
                 </div>
             </div>
@@ -747,9 +751,8 @@
         <p class="footer-info" style="font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Oluwaseun Garuba. All Rights Reserved.</p>
         
         <div class="social-links">
-            <a href="#" aria-label="LinkedIn">LinkedIn</a>
-            <a href="#" aria-label="GitHub">GitHub</a>
-            <a href="#" aria-label="Twitter">Twitter</a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+            <a href="https://github.com/seungaruba" target="_blank" aria-label="GitHub">GitHub</a>
         </div>
     </footer>
 
