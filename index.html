@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oluwaseun Garuba | GenAI & Quality Improvement Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.07);
+            --primary-accent: #00d2ff;
+            --secondary-accent: #928dab;
+            --gradient-text: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+            --gradient-bg: radial-gradient(circle at 50% 50%, rgba(58, 123, 213, 0.15), transparent 60%);
+            --text-main: #e0e6ed;
+            --text-muted: #94a3b8;
+            --border: 1px solid rgba(255, 255, 255, 0.08);
+            --font-main: 'Outfit', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND EFFECTS --- */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: #3a7bd5;
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: #8e44ad;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: var(--border);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #b3cdd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--primary-accent);
+            margin-bottom: 2rem;
+            animation: fadeUp 1.2s ease-out;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            animation: fadeUp 1.4s ease-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: fadeUp 1.6s ease-out;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-accent);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 6rem 10%;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-text);
+        }
+
+        /* --- ABOUT ME --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            border: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-text);
+        }
+
+        /* --- Profile Image Styles --- */
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-accent);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- COURSE MODULES --- */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-card {
+            background: var(--bg-card);
+            border: var(--border);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .module-number {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .module-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .module-topics {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        .module-topics ul {
+            list-style: none;
+        }
+
+        .module-topics li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .module-topics li::before {
+            content: '•';
+            color: var(--primary-accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- SUBMISSIONS --- */
+        .submission-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .submission-card {
+            height: 250px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .submission-card:hover {
+            border-color: var(--primary-accent);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+        .lock-icon {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .sub-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .status-badge {
+            margin-top: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--secondary-accent);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.05), transparent 40%);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: var(--border);
+            padding: 3rem;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: var(--font-main);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-text);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .message-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .message-success {
+            display: block;
+            background: rgba(46, 213, 115, 0.1);
+            border: 1px solid #2ed573;
+            color: #2ed573;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: var(--border);
+            background: rgba(10, 14, 23, 0.5);
+        }
+
+        .footer-info {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            color: var(--primary-accent);
+        }
+
+        /* --- ANIMATION --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            section { padding: 4rem 5%; }
+            .nav-links { display: none; }
+            .contact-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Background Effects -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Oluwaseun <span>Garuba</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#course">The Course</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header>
+        <h1>Generative AI for<br>Work & Research</h1>
+        <div class="hero-subtitle">Technical Advisor | Quality Improvement Specialist | Data Analyst</div>
+        <p class="hero-desc">
+            Bridging the gap between Public Health Systems, Sustainable Quality Improvement, and the cutting-edge power of Artificial Intelligence.
+        </p>
+        <a href="#contact" class="cta-button">Contact for Consultation</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I am a <strong>Quality Improvement and Sustainable Systems Enthusiast</strong> based in Abuja, Nigeria, with over 7 years of experience coordinating initiatives that rely on effective data usage. Currently serving as a Deputy Technical Advisor at Caritas Nigeria, I lead teams to strengthen health systems, improve clinical processes, and build capacity across state levels.
+                </p>
+                <p>
+                    My background spans from Software Development to Public Health Management, giving me a unique perspective on how technology can solve complex systemic problems. I have successfully managed relationships with major stakeholders including the CDC and FMOH, driving data-driven advocacy and policy development.
+                </p>
+                <p>
+                    I am now expanding my expertise into <strong>Generative AI</strong> to explore how automated workflows and LLMs can further revolutionize research and health data analysis.
+                </p>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-img-container">
+                    <img src="https://placehold.co/400x400/1a1f2e/00d2ff?text=Photo" alt="Oluwaseun Garuba" class="profile-img">
+                </div>
+
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Core Competencies</h3>
+                <div class="skills-container" style="justify-content: center;">
+                    <span class="skill-tag">Quality Improvement</span>
+                    <span class="skill-tag">Data Analysis (R & Excel)</span>
+                    <span class="skill-tag">Program Management</span>
+                    <span class="skill-tag">SQL & Database Admin</span>
+                    <span class="skill-tag">Public Health Systems</span>
+                    <span class="skill-tag">Generative AI</span>
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Process Automation</span>
+                </div>
+                <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; text-align: center;">
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        <strong>Education:</strong><br>
+                        M.Sc. Information Management Technology (FUTO)<br>
+                        B.Sc. Computer Science (Madonna University)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Section -->
+    <section id="course">
+        <h2 class="section-title">Course Modules</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            A breakdown of the "Generative AI for Work & Research" curriculum by The GRAPH Courses.
+        </p>
+        
+        <div class="course-grid">
+            <div class="module-card">
+                <div class="module-number">Module 01</div>
+                <h3 class="module-title">Websites, Docs & Presentations</h3>
+                <p class="module-desc">Generating text responsibly, creating project websites with no-code tools, and designing clear presentations using AI assistants.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>LLM Fundamentals</li>
+                        <li>Responsible text generation</li>
+                        <li>No-code web design</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-number">Module 02</div>
+                <h3 class="module-title">AI-Automated Data Analysis</h3>
+                <p class="module-desc">Mastering AI tools for analyzing data, manipulating files, and creating accurate, ethical automated reports using tools like Julius and Code Interpreter.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>Automated dashboards</li>
+                        <li>Dataset processing with Julius</li>
+                        <li>Spreadsheet automation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-number">Module 03</div>
+                <h3 class="module-title">GenAI for Research & Text Analysis</h3>
+                <p class="module-desc">Techniques for literature search, text classification, and knowledge synthesis to accelerate information gathering.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>Literature reviews (Elicit/LiteRev)</li>
+                        <li>Sentiment analysis</li>
+                        <li>Knowledge mapping</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-number">Module 04</div>
+                <h3 class="module-title">Custom GPTs & Chatbots</h3>
+                <p class="module-desc">Building chatbots for research assistance and knowledge management using RAG systems and Botpress.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>RAG Systems Architecture</li>
+                        <li>Building Custom GPTs</li>
+                        <li>Interactive chatbots</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-number">Module 05</div>
+                <h3 class="module-title">AI for Task Automation</h3>
+                <p class="module-desc">Strategies for automating repetitive research tasks and orchestrating app-to-app workflows.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>Agent-based systems</li>
+                        <li>Email response automation</li>
+                        <li>Browser control agents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-number">Module 06</div>
+                <h3 class="module-title">Communication & Outreach</h3>
+                <p class="module-desc">Creating authentic assets for sharing findings responsibly, from video abstracts to scientific figures.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>Research summaries</li>
+                        <li>Scientific visualization</li>
+                        <li>Content scheduling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="module-card" style="border-color: var(--primary-accent);">
+                <div class="module-number">Module 07</div>
+                <h3 class="module-title">Capstone Project</h3>
+                <p class="module-desc">Collaborating to create and refine a final AI solution, tool, or presentation demonstrating responsible AI practice.</p>
+                <div class="module-topics">
+                    <ul>
+                        <li>Project Development</li>
+                        <li>Peer Feedback</li>
+                        <li>Final Presentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Submissions -->
+    <section id="portfolio">
+        <h2 class="section-title">Weekly Submissions</h2>
+        <div class="submission-container">
+            <div class="submission-card">
+                <div class="lock-icon">🔒</div>
+                <div class="sub-title">Week 1 Submission</div>
+                <div class="status-badge">Coming Soon</div>
+            </div>
+            <div class="submission-card">
+                <div class="lock-icon">🔒</div>
+                <div class="sub-title">Week 2 Submission</div>
+                <div class="status-badge">Coming Soon</div>
+            </div>
+            <div class="submission-card">
+                <div class="lock-icon">🔒</div>
+                <div class="sub-title">Week 3 Submission</div>
+                <div class="status-badge">Coming Soon</div>
+            </div>
+            <div class="submission-card">
+                <div class="lock-icon">🔒</div>
+                <div class="sub-title">Week 4 Submission</div>
+                <div class="status-badge">Coming Soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Consultation</h2>
+        <div class="contact-container">
+            <p style="margin-bottom: 2rem; text-align: center; color: var(--text-muted);">
+                Looking to integrate GenAI into your research workflow or improve your health system's data quality? Let's connect.
+            </p>
+            <form id="consultationForm" onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Inquiry Type</label>
+                    <select class="form-control" required>
+                        <option value="">Select a service...</option>
+                        <option value="genai">Generative AI Integration</option>
+                        <option value="qi">Quality Improvement Strategy</option>
+                        <option value="data">Data Analysis & Visualization</option>
+                        <option value="other">Other Inquiry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" placeholder="Tell me about your project or research goals..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Consultation Request</button>
+                <div id="formMessage" class="message-box"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="margin-bottom: 1rem;">Oluwaseun <span>Garuba</span></div>
+        <p class="footer-info">Abuja, Nigeria</p>
+        <p class="footer-info" style="font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Oluwaseun Garuba. All Rights Reserved.</p>
+        
+        <div class="social-links">
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a href="#" aria-label="GitHub">GitHub</a>
+            <a href="#" aria-label="Twitter">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        function handleContact(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('.submit-btn');
+            const msgBox = document.getElementById('formMessage');
+            
+            // Visual feedback
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            // Simulate form submission
+            setTimeout(() => {
+                btn.textContent = 'Request Sent!';
+                msgBox.textContent = 'Thank you! Your request has been received. I will get back to you shortly.';
+                msgBox.className = 'message-box message-success';
+                event.target.reset();
+            }, 1200);
+        }
+    </script>
+
+</body>
+</html>
